@@ -49,7 +49,7 @@ public class SkillJdbc implements SkillDAO {
         }
         catch (SQLException e)
         {
-
+            System.out.println(e);
         }
         return skill;
     }
@@ -68,9 +68,80 @@ public class SkillJdbc implements SkillDAO {
         }
         catch(Exception e)
         {
-            //failed statement
+            System.out.println(e);
         }
         return;
+    }
+
+    @Override
+    public Skill addSkilltoEmployeeID(Skill skill,int employeeID)
+    {
+        try
+        {
+            ResultSet result;
+            PreparedStatement prep;
+
+            prep = con.prepareStatement(sql.insert_into_field_return_field_id());
+            //field_name -> field_type
+            prep.setString(1,skill.getField().getField_name());
+            prep.setString(2,skill.getField().getField_type());
+            result = prep.executeQuery();
+            if(result.next())
+            {
+                skill.getField().setField_id(result.getInt("field_id"));
+            }
+
+            prep = con.prepareStatement(sql.insert_into_skill_with_field_id_return_skill_id());
+            //field.field_id -> skill.experience -> skill.summary
+            prep.setInt(1,skill.getField().getField_id());
+            prep.setInt(2,skill.getExperience());
+            prep.setString(3,skill.getSummary());
+            result = prep.executeQuery();
+            if(result.next())
+            {
+                skill.setSkill_id(result.getInt("skill_id"));
+            }
+
+            prep = con.prepareStatement(sql.insert_into_joined_employeeskills_with_skill_id_and_employee_id());
+            //employeeID -> skill_id
+            prep.setInt(1,employeeID);
+            prep.setInt(2,skill.getSkill_id());
+            prep.executeUpdate();
+
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+        return skill;
+    }
+
+    public void updateSkillByEmployeeAndSkillID(Skill skill,int skillID,int employeeID)
+    {
+        try
+        {
+            PreparedStatement prep;
+            prep = con.prepareStatement(sql.update_skill_with_skill_id_employee_id());
+            // experience -> summary -> skillID -> employeeID
+            prep.setInt(1,skill.getExperience());
+            prep.setString(2,skill.getSummary());
+            prep.setInt(3,skillID);
+            prep.setInt(4,employeeID);
+            prep.executeUpdate();
+
+            prep = con.prepareStatement(sql.update_field_with_skill_id_employee_id());
+            //field_name -> field_type -> skillID -> employeeID
+            prep.setString(1,skill.getField().getField_name());
+            prep.setString(2,skill.getField().getField_type());
+            prep.setInt(3,skillID);
+            prep.setInt(4,employeeID);
+            prep.executeUpdate();
+
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
     }
 
 

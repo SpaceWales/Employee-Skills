@@ -64,7 +64,7 @@ public class RequestController
     @RequestMapping(path="/employees/{employeeID}/skills", method = RequestMethod.POST)
     public Skill addSkillToEmployee(@RequestBody Skill skill, @PathVariable("employeeID") int employeeID)
     {
-        return null;
+        return skillDAO.addSkilltoEmployeeID(skill,employeeID);
     }
 
     @RequestMapping(path="/employees/{employeeID}/skills/{skillID}", method = RequestMethod.GET)
@@ -75,9 +75,9 @@ public class RequestController
 
     //could be bringing in skill or employee not sure yet
     @RequestMapping(path="/employees/{employeeID}/skills/{skillID}", method = RequestMethod.PUT)
-    public void updateSkillByBothID(@RequestBody Skill skill, @PathVariable("employeeID") int employeeId,@PathVariable("skillID") int skillID)
+    public void updateSkillByBothID(@RequestBody Skill skill, @PathVariable("employeeID") int employeeID,@PathVariable("skillID") int skillID)
     {
-        return;
+        skillDAO.updateSkillByEmployeeAndSkillID(skill,skillID,employeeID);
     }
 
     @RequestMapping(path="/employees/{employeeID}/skills/{skillID}", method = RequestMethod.DELETE)
@@ -96,7 +96,7 @@ EMPLOYEE
 get /employees --get all employees DONE
 post /employees --create a new employee DONE employee/address
 get /employees/{employeeId} --find employee by id DONE
-put /employees/{employeeId} --update employee by id
+put /employees/{employeeId} --update employee by id DONE employee/address
 delete /employees/{employeeId} --delete employee by id DONE
 
 SKILL

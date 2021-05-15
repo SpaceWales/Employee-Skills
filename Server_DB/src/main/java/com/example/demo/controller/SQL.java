@@ -123,6 +123,55 @@ public class SQL {
         return sql;
     }
 
+    public String insert_into_field_return_field_id()
+    {
+        String sql = "insert into field\n" +
+                "(field_name,field_type)\n" +
+                "values(?,?) RETURNING field_id";
+        return sql;
+    }
+
+    public String insert_into_skill_with_field_id_return_skill_id()
+    {
+        String sql = "insert into skill\n" +
+                "(field_id,experience,summary)\n" +
+                "values (?,?,?) RETURNING skill_id";
+        return sql;
+    }
+
+    public String insert_into_joined_employeeskills_with_skill_id_and_employee_id()
+    {
+        String sql = "insert into employeeskills\n" +
+                "(employee_id,skill_id)\n" +
+                "values(?,?)";
+        return sql;
+    }
+
+    public String update_skill_with_skill_id_employee_id()
+    {
+        String sql = "update skill \n" +
+                "set \n" +
+                "experience = ?,\n" +
+                "summary = ?\n" +
+                "from employeeskills\n" +
+                "where skill.skill_id = ? and employeeskills.employee_id = ?";
+        //System.out.println(sql);
+        return sql;
+    }
+
+    public String update_field_with_skill_id_employee_id()
+    {
+        String sql = "update field \n" +
+                "set field_name = ?, \n" +
+                "field_type = ? \n" +
+                "from skill \n" +
+                "join employeeskills on employeeskills.skill_id = skill.skill_id \n" +
+                "where field.field_id = skill.field_id and skill.skill_id = ? " +
+                "and employeeskills.employee_id = ?";
+        //System.out.println(sql);
+        return sql;
+    }
+
 
 
 

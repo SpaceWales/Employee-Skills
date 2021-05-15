@@ -144,7 +144,6 @@ public class EmployeeJdbc implements EmployeeDAO
     {
         try
         {
-            System.out.println(employee);
             employee.setId(employeeID);
             PreparedStatement prep;
             ResultSet result;
