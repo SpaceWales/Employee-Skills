@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Address;
+import com.example.demo.model.Company;
 import com.example.demo.model.Employee;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -42,6 +43,32 @@ public class EmployeePKG {
 
         }
         return employee;
+    }
+
+    public static List<Company> mapCompanies(SqlRowSet companies)
+    {
+        List<Company> companyList = new ArrayList<>();
+        try
+        {
+            while(companies.next())
+            {
+                Company company = mapCompany(companies);
+                companyList.add(company);
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+        return companyList;
+    }
+
+    public static Company mapCompany(SqlRowSet row)
+    {
+        Company company = new Company();
+        company.setCompany_id(row.getInt("company_id"));
+        company.setCompany(row.getString("company"));
+        return company;
     }
 
     //call from db

@@ -26,19 +26,6 @@ public class SQL {
         return sql;
     }
 
-    public String delete_employee_by_ID()
-    {
-        String sql = "begin transaction;\n" +
-                "delete from employeebusiness\n" +
-                "where employee_id = ?\n" +
-                "delete from employeeskills\n" +
-                "where employee_id = ?\n" +
-                "delete from employee\n" +
-                "where id = ?\n" +
-                "commit;";
-        return sql;
-    }
-
     public String find_employee_by_ID()
     {
         String sql = "select * from employee,address " +
@@ -67,6 +54,27 @@ public class SQL {
         sqlStatements[0] = "delete from employeeskills where employee_id = ? and skill_id = ?";
         sqlStatements[1] = "delete from skill where skill_id = ?";
         return sqlStatements;
+    }
+
+    public String delete_employee_by_ID()
+    {
+        String sql = "begin transaction;\n" +
+                "delete from employeebusiness\n" +
+                "where employee_id = ?\n" +
+                "delete from employeeskills\n" +
+                "where employee_id = ?\n" +
+                "delete from employee\n" +
+                "where id = ?\n" +
+                "commit;";
+        return sql;
+    }
+
+    public String get_companies_by_id()
+    {
+        String sql = "select distinct businessunit.company_id, businessunit.company \n" +
+                "from businessunit,employeebusiness\n" +
+                "where employeebusiness.employee_id = ?";
+        return sql;
     }
 
 

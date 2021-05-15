@@ -10,5 +10,7 @@ public interface EmployeeDAO
     public void deleteEmployeeByID(int id);
     public Employee findEmployeeByID(int id);
     public Employee createEmployee(Employee employee);
+    public Employee packageSkills(Employee employee);
+    public Employee packageCompanies(Employee employee);
 
 }

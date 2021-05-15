@@ -70,6 +70,7 @@ public class EmployeeJdbc implements EmployeeDAO
             SqlRowSet employeeQry = jdbcTemplate.queryForRowSet(statement,id);
             employee = EmployeePKG.employeeByID(employeeQry);
             packageSkills(employee);
+            packageCompanies(employee);
         }
         catch(Exception e)
         {
@@ -81,20 +82,30 @@ public class EmployeeJdbc implements EmployeeDAO
     @Override
     public Employee createEmployee(Employee employee)
     {
-        System.out.println(employee);
+        //System.out.println(employee);
         //insert address, get address id back
         //insert employee, using address_id
+        //try to recycle what you can into an update, will just override whatever fields come in
 
         return employee;
     }
 
 
-
+    @Override
     public Employee packageSkills(Employee employee)
     {
         String skillQuery = sql.return_all_skills();
         SqlRowSet skillSet = jdbcTemplate.queryForRowSet(skillQuery,employee.getId());
         employee.setSkills(SkillPKG.mapSkills(skillSet));
+        return employee;
+    }
+
+    @Override
+    public Employee packageCompanies(Employee employee)
+    {
+        String companyQuery = sql.get_companies_by_id();
+        SqlRowSet companies = jdbcTemplate.queryForRowSet(companyQuery,employee.getId());
+        employee.setCompanies(EmployeePKG.mapCompanies(companies));
         return employee;
     }
 }
