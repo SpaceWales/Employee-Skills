@@ -56,19 +56,6 @@ public class SQL {
         return sqlStatements;
     }
 
-    public String delete_employee_by_ID()
-    {
-        String sql = "begin transaction;\n" +
-                "delete from employeebusiness\n" +
-                "where employee_id = ?\n" +
-                "delete from employeeskills\n" +
-                "where employee_id = ?\n" +
-                "delete from employee\n" +
-                "where id = ?\n" +
-                "commit;";
-        return sql;
-    }
-
     public String get_companies_by_id()
     {
         String sql = "select distinct businessunit.company_id, businessunit.company \n" +
@@ -123,6 +110,19 @@ public class SQL {
         return sql;
     }
 
+    public String delete_employee_by_ID()
+    {
+        String sql = "begin transaction;\n" +
+                "delete from employeebusiness\n" +
+                "where employee_id = ?\n" +
+                "delete from employeeskills\n" +
+                "where employee_id = ?\n" +
+                "delete from employee\n" +
+                "where id = ?\n" +
+                "commit;";
+        return sql;
+    }
+
     public String insert_into_field_return_field_id()
     {
         String sql = "insert into field\n" +
@@ -155,7 +155,6 @@ public class SQL {
                 "summary = ?\n" +
                 "from employeeskills\n" +
                 "where skill.skill_id = ? and employeeskills.employee_id = ?";
-        //System.out.println(sql);
         return sql;
     }
 
@@ -168,7 +167,6 @@ public class SQL {
                 "join employeeskills on employeeskills.skill_id = skill.skill_id \n" +
                 "where field.field_id = skill.field_id and skill.skill_id = ? " +
                 "and employeeskills.employee_id = ?";
-        //System.out.println(sql);
         return sql;
     }
 

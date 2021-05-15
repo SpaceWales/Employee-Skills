@@ -44,7 +44,6 @@ public class EmployeeJdbc implements EmployeeDAO
         }
         catch (Exception e)
         {
-            //failed statement
             System.out.println(e);
         }
         return employeeList;
@@ -60,7 +59,6 @@ public class EmployeeJdbc implements EmployeeDAO
         }
         catch(Exception e)
         {
-            //failed statement
             System.out.println(e);
         }
         return;
@@ -81,7 +79,6 @@ public class EmployeeJdbc implements EmployeeDAO
         }
         catch(Exception e)
         {
-            //failed statement
             System.out.println(e);
         }
         return employee;
@@ -90,7 +87,6 @@ public class EmployeeJdbc implements EmployeeDAO
     @Override
     public Employee createEmployee(Employee employee)
     {
-        //System.out.println(employee);
         //insert address,
         //get address id back
         //insert employee, using address_id,
@@ -98,7 +94,6 @@ public class EmployeeJdbc implements EmployeeDAO
 
         try
         {
-            //try to break these out into save methods
 
             ResultSet resultSet;
             PreparedStatement prep;

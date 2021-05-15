@@ -1,10 +1,5 @@
 package com.example.demo.model;
 
-import org.springframework.jdbc.support.rowset.SqlRowSet;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Skill
 {
     private int skill_id;

@@ -1,9 +1,5 @@
 package com.example.demo.model;
-
-import org.springframework.jdbc.support.rowset.SqlRowSet;
-
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Employee
@@ -18,7 +14,6 @@ public class Employee
 
     private Address address = new Address();
     private List<Skill> skills;
-    //need to tie these in
     private List<Company> companies;
 
 

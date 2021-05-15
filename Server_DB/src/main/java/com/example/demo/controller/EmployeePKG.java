@@ -23,7 +23,7 @@ public class EmployeePKG {
         }
         catch(Exception e)
         {
-            //no results found
+            System.out.println(e);
         }
         return employeeList;
     }
@@ -40,7 +40,7 @@ public class EmployeePKG {
         }
         catch(Exception e)
         {
-
+            System.out.println(e);
         }
         return employee;
     }
@@ -58,7 +58,7 @@ public class EmployeePKG {
         }
         catch(Exception e)
         {
-
+            System.out.println(e);
         }
         return companyList;
     }

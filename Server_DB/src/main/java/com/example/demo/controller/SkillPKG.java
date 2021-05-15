@@ -24,7 +24,7 @@ public class SkillPKG {
         }
         catch(Exception e)
         {
-            //null results
+            System.out.println(e);
         }
         return skillList;
     }
