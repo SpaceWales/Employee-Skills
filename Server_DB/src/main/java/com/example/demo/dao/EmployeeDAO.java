@@ -12,5 +12,6 @@ public interface EmployeeDAO
     public Employee createEmployee(Employee employee);
     public Employee packageSkills(Employee employee);
     public Employee packageCompanies(Employee employee);
+    public Employee updateEmployeeByID(Employee employee, int employeeID);
 
 }

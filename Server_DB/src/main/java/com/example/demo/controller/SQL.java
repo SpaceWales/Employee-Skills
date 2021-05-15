@@ -77,6 +77,52 @@ public class SQL {
         return sql;
     }
 
+    public String insert_address()
+    {
+        String sql = "insert into address (street,suite,city,region,postal,country) " +
+                "values(?,?,?,?,?,?) RETURNING address_id";
+        return sql;
+
+    }
+
+    public String insert_employee()
+    {
+        String sql = "insert into employee (firstname,lastname,contactemail,companyemail,address_id,birthdate,hireddate) " +
+                "values(?,?,?,?,?,?,?) RETURNING id";
+        return sql;
+    }
+
+    public String update_employee()
+    {
+        String sql = "update employee\n" +
+                "set \n" +
+                "firstname = ?,\n" +
+                "lastname = ?,\n" +
+                "contactemail = ?,\n" +
+                "companyemail = ?,\n" +
+                "address_id = ?,\n" +
+                "birthdate = ?,\n" +
+                "hireddate = ?\n" +
+                "where employee.id = ?";
+        return sql;
+    }
+
+    public String update_address_with_employee_id()
+    {
+        String sql = "update address\n" +
+                "set\n" +
+                "street = ?,\n" +
+                "suite = ?,\n" +
+                "city = ?,\n" +
+                "region = ?,\n" +
+                "postal = ?,\n" +
+                "country = ?\n" +
+                "from employee\n" +
+                "where address.address_id = employee.address_id \n" +
+                "and employee.id = ? RETURNING address.address_id";
+        return sql;
+    }
+
 
 
 

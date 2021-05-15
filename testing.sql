@@ -9,8 +9,8 @@ insert into field (field_name,field_type) values('ruby','software development');
 
 insert into address(street,city,region,postal,country) values ('123 nowhere lane','detroit','MI',48336,'US');
 
-insert into skill (field_id,experience,summary) values (1,12,'java bootcamp'); 
-insert into skill (field_id,experience,summary) values(2,6,'database course');
+insert into skill (field_id,experience,summary) values (3,12,'java bootcamp'); 
+insert into skill (field_id,experience,summary) values(4,6,'database course');
 
 --update employee set skills = '{1,2}' where id = 1;
 
@@ -19,8 +19,8 @@ update employee set address_id = 1 where employee.id = 2;
 
 --update employee set skills = skills || '{3,4,5}';
 
-insert into employeeskills(employee_id,skill_id) values (6,1);
-insert into employeeskills(employee_id,skill_id) values (6,2);
+insert into employeeskills(employee_id,skill_id) values (2,3);
+insert into employeeskills(employee_id,skill_id) values (1,2);
 
 insert into businessunit (company) values ('IBM');
 insert into businessunit (company) values ('Tech Elevator');
@@ -45,10 +45,18 @@ select field.field_name from field
 join skill on skill.field_id = field.field_id
 join employeeskills on skill.skill_id = employeeskills.skill_id
 join employee on employee.id = employeeskills.employee_id
-where employee.id = 1;
+where employee.id = 1 and skill.skill_id = 1 limit 1;
 
 insert into employeebusiness(employee_id,company_id)
 values (3,1), (3,2);
+
+select distinct businessunit.company_id, businessunit.company 
+from businessunit,employeebusiness
+where employeebusiness.employee_id = ?;
+
+insert into field(field_name)
+values("testing ID return")
+returning "field_id";
 
 --giant mapped employee list
 select * from employee
@@ -78,6 +86,18 @@ where employee_id = 3;
 delete from employee
 where id = 3;
 commit;
+
+select * from skill,field
+
+
+begin transaction;
+delete from employeeskills
+where employee_id = ? and skill_id = ?;
+delete from skill
+where skill_id = ?;
+commit;
+
+
 
 
 
@@ -112,7 +132,7 @@ from field
 join skill on skill.field_id = field.field_id
 join employeeskills on employeeskills.skill_id = skill.skill_id
 join employee on employee.id = employeeskills.employee_id
-where employee.id = 1;
+where employee.id = 1 and skill.skill_id = 1 limit 1
 
 
 --post a skill to employee

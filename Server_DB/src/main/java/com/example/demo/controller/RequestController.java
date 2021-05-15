@@ -42,7 +42,7 @@ public class RequestController
     @RequestMapping(path="/employees/{employeeID}", method = RequestMethod.PUT)
     public Employee updateEmployeeById(@RequestBody Employee employee, @PathVariable("employeeID") int employeeID)
     {
-        return null;
+        return employeeDAO.updateEmployeeByID(employee,employeeID);
     }
 
     @RequestMapping(path="/employees/{employeeID}", method = RequestMethod.DELETE)
@@ -94,7 +94,7 @@ public class RequestController
 
 EMPLOYEE
 get /employees --get all employees DONE
-post /employees --create a new employee
+post /employees --create a new employee DONE employee/address
 get /employees/{employeeId} --find employee by id DONE
 put /employees/{employeeId} --update employee by id
 delete /employees/{employeeId} --delete employee by id DONE
