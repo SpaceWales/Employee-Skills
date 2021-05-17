@@ -74,7 +74,11 @@ export default {
                     this.newEmployee = {};
                     this.$router.push({name: 'Home'});
                 }
-            )    
+            ).catch((error) => {
+                if(error.response){
+                    window.alert('exception caught');
+                }
+            })    
         }
     }
 }

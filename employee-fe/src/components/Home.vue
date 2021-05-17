@@ -20,7 +20,7 @@
     </button>
     <div class="dropdown-content">
       <a v-on:click.prevent='showSearchSkill = !showSearchSkill' href="#">Get by Employee</a>
-      <a href="#">Add</a>
+      <a v-on:click.prevent='showAddSkill = !showAddSkill' href="#">Add</a>
       <a href="#">Find</a>
       <a href="#">Update</a>
       <a href="#">Delete</a>
@@ -33,6 +33,7 @@
 <div v-show='showAllEmployee' id="show-employee"> <get-all/> </div>
 <div v-show='showCreateEmployee' id='create-employee'> <create-employee/> </div>
 <div v-show='showSearchSkill' id='show-skill-id'> <skillid/> </div>
+<div v-show='showAddSkill' id='show-add-skill'> <addskill/> </div>
 </div>
 
 </template>
@@ -41,6 +42,7 @@
 import GetAll from '../components/Getall.vue'
 import CreateEmployee from '../components/CreateEmp.vue'
 import skillid from '../components/SkillsallbyID.vue'
+import addskill from '../components/Addskill.vue'
 
 export default {
     name: 'Home',
@@ -49,13 +51,15 @@ export default {
         showAllEmployee: false,
         showCreateEmployee: false,
         showSearchSkill: false,
+        showAddSkill: false,
         }
     },
 
     components: {
         GetAll,
         CreateEmployee,
-        skillid
+        skillid,
+        addskill
     }
 
 }

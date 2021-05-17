@@ -18,6 +18,11 @@ import axios from 'axios';
     allSkillsByID(id)
     {
       return http.get(`/employees/${id}/skills`);
+    },
+
+    addSkillByID(id,skill)
+    {
+      return http.post(`/employees/${id}/skills`,skill);
     }
 
 
