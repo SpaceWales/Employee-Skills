@@ -142,13 +142,13 @@ export default {
         .then(() => {
           window.alert("Created Employee");
           this.newEmployee = {};
-          this.$router.push({ name: "Home" });
         })
         .catch((error) => {
           if (error.response) {
             window.alert("exception caught");
           }
         });
+        this.$router.push({ name: "Home" });
     },
   },
 };
