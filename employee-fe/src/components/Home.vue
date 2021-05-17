@@ -1,68 +1,78 @@
 <template>
-<div>
-  <div class="navbar">
-  <a href="#home">Home</a>
-    <div class="dropdown">
-    <button class="dropbtn">Employee
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a v-on:click.prevent='showAllEmployee = !showAllEmployee' href="#">Get All</a>
-      <a v-on:click.prevent='showCreateEmployee = !showCreateEmployee' href="#">Create</a>
-      <a href="#">Find</a>
-      <a href="#">Update</a>
-      <a href="#">Delete</a>
+  <div>
+    <div class="navbar">
+      <a href="#home">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Employee
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a v-on:click.prevent="showAllEmployee = !showAllEmployee" href="#"
+            >Get All</a
+          >
+          <a
+            v-on:click.prevent="showCreateEmployee = !showCreateEmployee"
+            href="#"
+            >Create</a
+          >
+          <a href="#">Find</a>
+          <a href="#">Update</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Skills
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a v-on:click.prevent="showSearchSkill = !showSearchSkill" href="#"
+            >Get by Employee</a
+          >
+          <a v-on:click.prevent="showAddSkill = !showAddSkill" href="#">Add</a>
+          <a href="#">Find</a>
+          <a href="#">Update</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
     </div>
-  </div> 
-  <div class="dropdown">
-    <button class="dropbtn">Skills 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a v-on:click.prevent='showSearchSkill = !showSearchSkill' href="#">Get by Employee</a>
-      <a v-on:click.prevent='showAddSkill = !showAddSkill' href="#">Add</a>
-      <a href="#">Find</a>
-      <a href="#">Update</a>
-      <a href="#">Delete</a>
+
+    <h3>Choose option from dropdown</h3>
+
+    <div v-show="showAllEmployee" id="show-employee"><get-all /></div>
+    <div v-show="showCreateEmployee" id="create-employee">
+      <create-employee />
     </div>
-  </div> 
-</div>
-
-<h3>Choose option from dropdown</h3>
-
-<div v-show='showAllEmployee' id="show-employee"> <get-all/> </div>
-<div v-show='showCreateEmployee' id='create-employee'> <create-employee/> </div>
-<div v-show='showSearchSkill' id='show-skill-id'> <skillid/> </div>
-<div v-show='showAddSkill' id='show-add-skill'> <addskill/> </div>
-</div>
-
+    <div v-show="showSearchSkill" id="show-skill-id"><skillid /></div>
+    <div v-show="showAddSkill" id="show-add-skill"><addskill /></div>
+  </div>
 </template>
 
 <script>
-import GetAll from '../components/Getall.vue'
-import CreateEmployee from '../components/CreateEmp.vue'
-import skillid from '../components/SkillsallbyID.vue'
-import addskill from '../components/Addskill.vue'
+import GetAll from "../components/Getall.vue";
+import CreateEmployee from "../components/CreateEmp.vue";
+import skillid from "../components/SkillsallbyID.vue";
+import addskill from "../components/Addskill.vue";
 
 export default {
-    name: 'Home',
-    data(){
-        return {
-        showAllEmployee: false,
-        showCreateEmployee: false,
-        showSearchSkill: false,
-        showAddSkill: false,
-        }
-    },
+  name: "Home",
+  data() {
+    return {
+      showAllEmployee: false,
+      showCreateEmployee: false,
+      showSearchSkill: false,
+      showAddSkill: false,
+    };
+  },
 
-    components: {
-        GetAll,
-        CreateEmployee,
-        skillid,
-        addskill
-    }
-
-}
+  components: {
+    GetAll,
+    CreateEmployee,
+    skillid,
+    addskill,
+  },
+};
 </script>
 
 <style>
@@ -90,7 +100,7 @@ body {
 }
 
 .dropdown .dropbtn {
-  font-size: 16px;  
+  font-size: 16px;
   border: none;
   outline: none;
   color: white;
@@ -100,7 +110,8 @@ body {
   margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover,
+.dropdown:hover .dropbtn {
   background-color: red;
 }
 
@@ -109,7 +120,7 @@ body {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -129,5 +140,4 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 </style>
