@@ -28,8 +28,17 @@ import axios from 'axios';
     getEmployee(id)
     {
       return http.get(`/employees/${id}`);
-    }
+    },
 
+    updateEmployee(id,employee)
+    {
+      return http.put(`/employees/${id}`,employee);
+    },
+
+    deleteEmployee(id)
+    {
+      return http.delete(`/employees/${id}`);
+    }
 
     //in rules if needed:  "vue/no-unused-components": "off"
 

@@ -5,6 +5,8 @@ import com.example.demo.dao.SkillDAO;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +22,10 @@ public class RequestController
     //Employee section
 
     @RequestMapping(path="/employees", method = RequestMethod.GET)
-    public List<Employee> getAllEmployees()
+    public ResponseEntity getAllEmployees()
     {
-        return employeeDAO.returnAllEmployees();
+        //wrap in if
+        return new ResponseEntity(employeeDAO.returnAllEmployees(), HttpStatus.OK);
     }
 
     @RequestMapping(path="/employees", method = RequestMethod.POST)
@@ -53,9 +56,12 @@ public class RequestController
     //Skill
 
     @RequestMapping(path="/employees/{employeeID}/skills", method = RequestMethod.GET)
-    public List<Skill> getAllSkillsByID(@PathVariable("employeeID") int employeeID)
+    public ResponseEntity getAllSkillsByID(@PathVariable("employeeID") int employeeID)
     {
-        return skillDAO.returnAllSkillsByEmployeeID(employeeID);
+        if(skillDAO.returnAllSkillsByEmployeeID(employeeID).size() == 0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(skillDAO.returnAllSkillsByEmployeeID(employeeID), HttpStatus.OK);
     }
 
     //could be bringing in skill or Employee not sure yet

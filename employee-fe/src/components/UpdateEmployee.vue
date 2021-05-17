@@ -9,13 +9,13 @@
           placeholder="Enter ID to search"
           v-model="id"
         />
-        <button type="submit" class="searchButton" v-on:click.prevent="hydrateEmployee"></button>
+        <button v-on:click="hydrateEmployee">Submit</button>
       </div>
     </div>
 
     <div class="search-results">
       <div class="container">
-        <form v-on:submit="createEmployeeDB">
+        <form v-on:submit.prevent="updatedEmployee">
           <label for="fname">First Name</label>
           <input
             type="text"
@@ -122,14 +122,6 @@
           />
 
           <input type="submit" value="Submit" />
-          <!-- <select id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select> -->
-
-          <!-- <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea> -->
         </form>
       </div>
     </div>
@@ -137,13 +129,13 @@
 </template>
 
 <script>
-import employeeAPI from '../services/employeeAPI';
+import employeeAPI from "../services/employeeAPI";
 export default {
   data() {
     return {
       id: 0,
       employee: {
-        address: {}
+        address: {},
       },
     };
   },
@@ -155,15 +147,26 @@ export default {
   },
 
   methods: {
-    
-    hydrateEmployee(id){
+    hydrateEmployee() {
       employeeAPI.getEmployee(this.id).then((response) => {
         this.employee = response.data;
       });
     },
 
-
-  }
+    updatedEmployee() {
+      employeeAPI
+        .updateEmployee(this.id, this.employee)
+        .then(() => {
+          window.alert("updated employee");
+        })
+        .catch((error) => {
+          if (error.response) {
+            window.alert("something went wrong");
+          }
+        });
+      this.$router.push({ name: "Home" });
+    },
+  },
 };
 </script>
 

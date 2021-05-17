@@ -52,10 +52,12 @@ public class EmployeeJdbc implements EmployeeDAO
     @Override
     public void deleteEmployeeByID(int id)
     {
-        String statement = sql.delete_employee_by_ID();
+        String[] statement = sql.delete_employee_by_ID();
         try
         {
-            jdbcTemplate.update(statement,id);
+            jdbcTemplate.update(statement[0],id);
+            jdbcTemplate.update(statement[1],id);
+            jdbcTemplate.update(statement[2],id);
         }
         catch(Exception e)
         {

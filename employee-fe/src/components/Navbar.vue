@@ -1,39 +1,37 @@
 <template>
-      <div class="navbar">
-      <router-link to='/'>Home</router-link>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Employee
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <router-link to='/getall'>Get All Employees</router-link>
-          <router-link to='/create-employee'>Create Employee</router-link>
-          <a href="#">Find</a>
-          <a href="#">Update</a>
-          <a href="#">Delete</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Skills
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <router-link to='/skills-by-id'>Get Skills by Id</router-link>
-          <router-link to='/add-skill'>Add Skill</router-link>      
-          <a href="#">Find</a>
-          <a href="#">Update</a>
-          <a href="#">Delete</a>
-        </div>
+  <div class="navbar">
+    <router-link to="/">Home</router-link>
+    <div class="dropdown">
+      <button class="dropbtn">
+        Employee
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <router-link to="/getall">Get All Employees</router-link>
+        <router-link to="/create-employee">Create Employee</router-link>
+        <a href="#">Find</a>
+        <router-link to="/update-employee">Update Employee</router-link>
+        <router-link to="/delete-employee">Delete Employee</router-link>
       </div>
     </div>
+    <div class="dropdown">
+      <button class="dropbtn">
+        Skills
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <router-link to="/skills-by-id">Get Skills by Id</router-link>
+        <router-link to="/add-skill">Add Skill</router-link>
+        <a href="#">Find</a>
+        <a href="#">Update</a>
+        <a href="#">Delete</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>

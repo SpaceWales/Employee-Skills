@@ -47,9 +47,16 @@ export default {
 
   methods: {
     searchSKills() {
-      employeeAPI.allSkillsByID(this.id).then((response) => {
-        this.skills = response.data;
-      });
+      employeeAPI
+        .allSkillsByID(this.id)
+        .then((response) => {
+          this.skills = response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            window.alert("bad request");
+          }
+        });
     },
   },
 

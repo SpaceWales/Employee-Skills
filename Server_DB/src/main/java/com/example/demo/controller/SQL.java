@@ -110,16 +110,13 @@ public class SQL {
         return sql;
     }
 
-    public String delete_employee_by_ID()
+    public String[] delete_employee_by_ID()
     {
-        String sql = "begin transaction;\n" +
-                "delete from employeebusiness\n" +
-                "where employee_id = ?\n" +
-                "delete from employeeskills\n" +
-                "where employee_id = ?\n" +
-                "delete from employee\n" +
-                "where id = ?\n" +
-                "commit;";
+        String[] sql = new String[3];
+        sql[0] = "delete from employeebusiness where employee_id = ?";
+        sql[1] = "delete from employeeskills where employee_id = ?";
+        sql[2] = "delete from employee where id = ?";
+
         return sql;
     }
 
