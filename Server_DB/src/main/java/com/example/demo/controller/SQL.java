@@ -58,9 +58,11 @@ public class SQL {
 
     public String get_companies_by_id()
     {
-        String sql = "select distinct businessunit.company_id, businessunit.company \n" +
-                "from businessunit,employeebusiness\n" +
-                "where employeebusiness.employee_id = ?";
+        String sql = "select businessunit.company_id, businessunit.company\n" +
+                "from businessunit\n" +
+                "join employeebusiness on employeebusiness.company_id = businessunit.company_id\n" +
+                "join employee on employee.id = employeebusiness.employee_id\n" +
+                "where employee.id = ?";
         return sql;
     }
 

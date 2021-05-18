@@ -38,7 +38,14 @@ import axios from 'axios';
     deleteEmployee(id)
     {
       return http.delete(`/employees/${id}`);
+    },
+
+    findEmployee(id)
+    {
+      return http.get(`/employees/${id}`);
     }
+
+    
 
     //in rules if needed:  "vue/no-unused-components": "off"
 

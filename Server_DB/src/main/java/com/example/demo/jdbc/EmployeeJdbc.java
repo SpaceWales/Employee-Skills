@@ -5,9 +5,12 @@ import com.example.demo.controller.SQL;
 import com.example.demo.controller.SkillPKG;
 import com.example.demo.dao.EmployeeDAO;
 import com.example.demo.model.Employee;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class EmployeeJdbc implements EmployeeDAO
             for(Employee employee : employeeList)
             {
                 packageSkills(employee);
+                packageCompanies(employee);
             }
 
         }

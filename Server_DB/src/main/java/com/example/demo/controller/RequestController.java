@@ -24,20 +24,25 @@ public class RequestController
     @RequestMapping(path="/employees", method = RequestMethod.GET)
     public ResponseEntity getAllEmployees()
     {
-        //wrap in if
+        if(employeeDAO.returnAllEmployees().size() == 0){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity(employeeDAO.returnAllEmployees(), HttpStatus.OK);
     }
 
     @RequestMapping(path="/employees", method = RequestMethod.POST)
-    public Employee createEmployee(@RequestBody Employee employee)
+    public ResponseEntity createEmployee(@RequestBody Employee employee)
     {
-        return employeeDAO.createEmployee(employee);
+        return new ResponseEntity(employeeDAO.createEmployee(employee),HttpStatus.CREATED);
     }
 
     @RequestMapping(path="/employees/{employeeID}", method = RequestMethod.GET)
-    public Employee findEmployeeById(@PathVariable int employeeID)
+    public ResponseEntity findEmployeeById(@PathVariable int employeeID)
     {
-        return employeeDAO.findEmployeeByID(employeeID);
+        if(employeeDAO.findEmployeeByID(employeeID).getId() == 0){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(employeeDAO.findEmployeeByID(employeeID),HttpStatus.OK);
     }
 
     @RequestMapping(path="/employees/{employeeID}", method = RequestMethod.PUT)

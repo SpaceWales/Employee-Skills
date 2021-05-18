@@ -7,6 +7,7 @@ import SkillAllByID from '../components/SkillsallbyID.vue'
 import AddSkill from '../components/Addskill.vue'
 import UpdateEmployee from '../components/UpdateEmployee.vue'
 import DeleteEmployee from '../components/DeleteEmployee.vue'
+import FindEmployee from '../components/FindEmployee.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,12 @@ const routes = [
     path:'/delete-employee',
     name:'delete-employee',
     component: DeleteEmployee
+  },
+
+  {
+    path:'/find-employee',
+    name:'find-employee',
+    component: FindEmployee
   }
 
 

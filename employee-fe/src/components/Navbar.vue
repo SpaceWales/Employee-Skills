@@ -9,7 +9,7 @@
       <div class="dropdown-content">
         <router-link to="/getall">Get All Employees</router-link>
         <router-link to="/create-employee">Create Employee</router-link>
-        <a href="#">Find</a>
+        <router-link to='/find-employee'>Find Employee</router-link>
         <router-link to="/update-employee">Update Employee</router-link>
         <router-link to="/delete-employee">Delete Employee</router-link>
       </div>

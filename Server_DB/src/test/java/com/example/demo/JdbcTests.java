@@ -9,7 +9,6 @@ import com.example.demo.jdbc.SkillJdbc;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Field;
 import com.example.demo.model.Skill;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
